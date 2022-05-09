@@ -1,44 +1,27 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import styled from "styled-components"
-import Banner from '../components/Banner'
-import ItemCard from '../components/ItemCard'
-import useItems from '../context/ItemContext'
 
 export default function Home() {
-  const plants = useItems()
   const user = { name: "Murphy", cart: [] }
 
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>Checkout</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner />
       <Header>
-        <h1>Hey there, {user.name}</h1>
-        <Link href="/cart" >
+        <h1>Hey there, {user.name}! Let's get these plants headed your way.</h1>
           <CartIcon>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
             <p>{user.cart.length}</p>
           </CartIcon>
-        </Link>
         </Header>
       <main>
 
-        <Gallery>
-          {
-          plants.map((plant, i) => (
-            <ItemCard 
-              key={plant.name}
-              item={plant}
-            />
-          ))
-          }
-        </Gallery>
+        
       </main>
     </div>
   )
