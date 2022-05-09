@@ -1,4 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
+import data from '../lib/data'
+import { useState } from "react"
+import { ItemContext } from "../context/ItemContext"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,10 +17,14 @@ const GlobalStyle = createGlobalStyle`
 
 
 export default function App({ Component, pageProps }) {
+  const [items, setItems] = useState(data)
+
   return (
     <>
-      <GlobalStyle />
+      <ItemContext.Provider value={{ items, setItems }}>
+        <GlobalStyle />
         <Component {...pageProps} />
+      </ItemContext.Provider>
     </>
   )
 }

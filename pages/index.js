@@ -6,7 +6,7 @@ import ItemCard from '../components/ItemCard'
 import useItems from '../context/ItemContext'
 
 export default function Home() {
-  const plants = useItems()
+  const { items: plants, setItems } = useItems()
   const user = { name: "Murphy", cart: [] }
 
   return (
