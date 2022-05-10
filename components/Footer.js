@@ -7,13 +7,13 @@ export default function Footer() {
     return (
         <Wrapper>
             <h3>Our Products</h3>
-            <ol>
+            <ProductList>
                 {
                     items.map((i) =>
-                        <li>{i.name}</li>
+                        <li key={i.name}>{i.name}</li>
                     )
                 }
-            </ol>
+            </ProductList>
         </Wrapper>
     )
 }
@@ -21,4 +21,11 @@ export default function Footer() {
 const Wrapper = styled.footer`
     background-color: #f0f0f0;
     padding: 20px 10%;
+    padding-bottom: 100px;
+`
+
+const ProductList = styled.ol`
+    list-style: none;
+    margin: 0;
+    padding: 0;
 `
