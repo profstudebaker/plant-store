@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
+  #__next, html, body {
+    height: 100%;
+  }
 `
 
 

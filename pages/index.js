@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styled from "styled-components"
 import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 import ItemCard from '../components/ItemCard'
 import useItems from '../context/ItemContext'
 
@@ -10,14 +11,14 @@ export default function Home() {
   const user = { name: "Murphy", cart: [] }
 
   return (
-    <div>
+    <PageWrapper>
       <Head>
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
       <Header>
-        <h1>Hey there, {user.name}</h1>
+        <h1>Start growing, {user.name}</h1>
         <Link href="/cart" >
           <CartIcon>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,8 +28,8 @@ export default function Home() {
           </CartIcon>
         </Link>
         </Header>
-      <main>
-
+      <Main>
+        <h2>Shop our Extensive Plant Collection </h2>
         <Gallery>
           {
           plants.map((plant, i) => (
@@ -39,10 +40,27 @@ export default function Home() {
           ))
           }
         </Gallery>
-      </main>
-    </div>
+      </Main>
+      <Footer />
+    </PageWrapper>
   )
 }
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`
+
+const Main = styled.main`
+  padding: 20px 10%;
+  flex: 1;
+  h2 {
+    margin: 0;
+    padding-bottom: 10px;
+  }
+`
 
 const Header = styled.header`
   display: flex;
@@ -61,7 +79,6 @@ const CartIcon = styled.div`
 `
 
 const Gallery = styled.div`
-  padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
