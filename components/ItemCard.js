@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, addToCart }) {
     return <Card>
         <div className="img-wrapper">
             <img src={item.img} alt={item.name} />
@@ -8,7 +8,7 @@ export default function ItemCard({ item }) {
         <div className="content">
         <h2 className="plant-name">{item.name}</h2>
         <p className="price">${item.price}</p>
-        <AddToCart onClick={() => {}} className={item.stock <= 0 ? 'disabled' : ''}>Add to Cart</AddToCart>
+        <AddToCart onClick={() => addToCart(item)} className={item.stock <= 0 ? 'disabled' : ''}>Add to Cart</AddToCart>
         </div>
     </Card>
 }

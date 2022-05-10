@@ -3,9 +3,10 @@ import styled from "styled-components"
 import Footer from '../components/Footer'
 import ItemCard from '../components/ItemCard'
 import useItems from '../context/ItemContext'
+import useUser from '../context/UserContext'
 
 export default function Home() {
-  const user = { name: "Murphy", cart: [] }
+  const { user } = useUser()
   const { items } = useItems()
 
   return (
@@ -25,7 +26,14 @@ export default function Home() {
         </Header>
       <Main>
         <Title>Welcome to your cart, {user.name}! Let's get these plants headed your way.</Title>
-        <Placeholder></Placeholder>
+        <CartList>
+            {
+                user.cart.map((item) => <CartItem>1 {item.name} - ${item.price}</CartItem>)
+            }
+        </CartList>
+        <Total>
+            Total: ${user.cart.reduce((agg, item) => agg + item.price, 0)}
+        </Total>
         <h2>Want a little something extra?</h2>
         <Gallery>
             {
@@ -40,6 +48,11 @@ export default function Home() {
   )
 }
 
+const Total = styled.h2`
+    font-size: 3rem;
+    font-weight: 700;
+`
+
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,6 +62,15 @@ const PageWrapper = styled.div`
 
 const Title = styled.h1`
     font-size: 3rem;
+`
+
+const CartList = styled.ol`
+    list-style: none;
+    padding: 50px 0px;
+`
+const CartItem = styled.li`
+    font-size: 2rem;
+    padding: 10px 0px;
 `
 
 const Main = styled.main`

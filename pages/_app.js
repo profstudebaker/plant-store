@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import data from '../lib/data'
 import { useState } from "react"
 import { ItemContext } from "../context/ItemContext"
+import { UserContext } from '../context/UserContext'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,13 +22,17 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App({ Component, pageProps }) {
   const [items, setItems] = useState(data)
+  const [user, setUser] = useState({
+    name: "Murphy",
+    cart: []
+  })
 
   return (
-    <>
+    <UserContext.Provider value={{ user, setUser }}>
       <ItemContext.Provider value={{ items, setItems }}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ItemContext.Provider>
-    </>
+    </UserContext.Provider>
   )
 }

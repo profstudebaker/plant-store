@@ -5,10 +5,15 @@ import Banner from '../components/Banner'
 import Footer from '../components/Footer'
 import ItemCard from '../components/ItemCard'
 import useItems from '../context/ItemContext'
+import useUser from '../context/UserContext'
 
 export default function Home() {
   const { items: plants, setItems } = useItems()
-  const user = { name: "Murphy", cart: [] }
+  const { user, setUser } = useUser()
+
+  function addToCart(item){
+    setUser({...user, cart: [...user.cart, item]})
+  }
 
   return (
     <PageWrapper>
@@ -36,6 +41,7 @@ export default function Home() {
             <ItemCard 
               key={plant.name}
               item={plant}
+              addToCart={addToCart}
             />
           ))
           }
